@@ -11,65 +11,55 @@
     padding: 0 15px;
     background-color: #299B01;
     color: white;
-};
-
+}
 .header__logo {
     display: flex;
     align-items: center;
-};
-
+}
 .header__title {
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
     margin: 0 0 0 15px;
-
-    @media (max-width: 650px) {
-        font-size: 20px;
-    }
-};
-
+}
 .header__logo-image {
     width: 50px;
-};
-
+}
 .header__sign {
     background-color: transparent;
     border-color: transparent;
     color: white;
     font-size: 16px;
-};
-
+}
 .header__sign-image {
     width: 32px;
-};
-
+}
 .header__user-image {
     width: 32px;
     border-radius: 50px;
-};
-
+}
 .header__user {
     display: flex;
     align-items: center;
     text-align: center;
-};
-
+}
 .header__logout {
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
     margin: 0 15px 0 0;
-
-    @media (max-width: 650px) {
-        margin: 0;
-    }
-};
-
+}
 .header__figure {
     margin: 0 30px;
-
-    @media (max-width: 650px) {
+}
+@media (max-width: 650px) {
+    .header__title {
+        font-size: 20px;
+    }
+    .header__logout {
+        margin: 0;
+    }
+    .header__figure {
         margin: 0 10px;
     }
-};
+}

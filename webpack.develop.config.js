@@ -3,11 +3,12 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/index.js",
+  mode: "development",
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules/,
         loader: "babel-loader",
         options: { presets: ["@babel/env"] }
       },
@@ -27,8 +28,7 @@ module.exports = {
   },
   resolve: { extensions: [".js", ".jsx"] },
   output: {
-    path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },
   devServer: {
@@ -37,5 +37,7 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
