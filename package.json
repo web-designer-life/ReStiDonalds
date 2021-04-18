@@ -6,6 +6,7 @@
   "author": "Anton Yulbarysau <io57196657@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "firebase": "^8.4.1",
     "immer": "^9.0.1",
     "nanoid": "^3.1.22",
     "prop-types": "^15.7.2",

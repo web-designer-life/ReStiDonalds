@@ -46,8 +46,12 @@
 .header__logout {
     font-size: 20px;
     font-weight: 700;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 20px;
+    color: white;
     cursor: pointer;
-    margin: 0 15px 0 0;
+    padding: 5px 10px;
 }
 .header__figure {
     margin: 0 30px;
