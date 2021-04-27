@@ -9,6 +9,7 @@ export const useFetch = () => {
             try {
                 const json = await fetch('DB.json');
                 const res = await json.json();
+                
                 setResponce(res);
             } catch(err) {
                 setError(err);

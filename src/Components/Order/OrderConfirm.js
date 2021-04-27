@@ -4,7 +4,6 @@ import { Overlay } from '../Modal/ModalItem';
 import { OrderTitle, Total, TotalPrice } from './Order';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { totalPriceItems, formatCurrency, projection } from '../Functions/secondaryFunction';
-
 import { useSelector } from 'react-redux';
 import { selectUserName, selectUserEmail } from '../../features/userSlice';
 
@@ -38,7 +37,12 @@ const sendOrder = (database, orders, userName, userEmail) => {
     });
 };
 
-export const OrderConfirm = ({ orders, setOrders, setOpenOrderConfirm, database }) => {
+export const OrderConfirm = ({ 
+    orders, 
+    setOrders, 
+    setOpenOrderConfirm, 
+    database 
+}) => {
     const userName = useSelector(selectUserName);
     const userEmail = useSelector(selectUserEmail);
 
@@ -56,7 +60,9 @@ export const OrderConfirm = ({ orders, setOrders, setOpenOrderConfirm, database 
                 <ButtonCheckout onClick={() => {
                     sendOrder(database, orders, userName, userEmail);
                     setOrders([]);
+                    
                     setOpenOrderConfirm(false);
+
                     document.getElementById("message").style.display = "block";
                     setTimeout(() => {
                         document.getElementById("message").style.display = "none";

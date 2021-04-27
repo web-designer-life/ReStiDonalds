@@ -1,15 +1,15 @@
 import React from 'react';
 import { GlobalStyle } from './Components/Style/GlobalStyle';
+import { OrderMessage } from './Components/Order/OrderMessage';
 import { NavBar } from './Components/NavBar/NavBar';
+import { Order } from './Components/Order/Order';
 import { Menu } from './Components/Menu/Menu';
 import { ModalItem } from './Components/Modal/ModalItem';
-import { Order } from './Components/Order/Order';
+import { OrderConfirm } from './Components/Order/OrderConfirm';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useTitle } from './Components/Hooks/useTitle';
-import { OrderConfirm } from './Components/Order/OrderConfirm';
 import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
-import { OrderMessage } from './Components/Order/OrderMessage';
 import { auth, provider } from './firebase';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';

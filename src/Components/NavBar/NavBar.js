@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import logoImg from '../../Images/logo.svg';
 import loginImg from '../../Images/sign.svg';
-
 import { useSelector } from 'react-redux';
 import { selectUserName, selectUserAvatar } from '../../features/userSlice';
 

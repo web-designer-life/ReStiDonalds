@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
 import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
-
 import { useSelector } from 'react-redux';
 import { selectUserName } from '../../features/userSlice';
 
@@ -66,7 +65,13 @@ const EmptyList = styled.p`
     text-align: center;
 `;
 
-export const Order = ({ orders, setOrders, setOpenOrderConfirm, setOpenItem, login }) => {
+export const Order = ({ 
+    orders, 
+    setOrders, 
+    setOpenOrderConfirm, 
+    setOpenItem, 
+    login 
+}) => {
     const userName = useSelector(selectUserName);
     
     const deleteItem = (index) => {
@@ -76,7 +81,6 @@ export const Order = ({ orders, setOrders, setOpenOrderConfirm, setOpenItem, log
     };
 
     const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
-
     const totalCounter = orders.reduce((result, order) => order.count + result, 0);
 
     return (

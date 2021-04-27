@@ -23,7 +23,8 @@ const SectionMenu = styled.section`
 export const Menu = ({ setOpenItem }) => (
     <MenuStyled>
         <Banner/>
-        {dbMenu ? 
+        {
+            dbMenu ? 
             <>
                 <SectionMenu>
                     <h2>Бургеры</h2>
