@@ -23,18 +23,20 @@ export function Choices({ choice, changeChoices, openItem }) {
         <>
             <h3>Выбирайте:</h3>
             <ChoiceWrap>
-                {openItem.choices.map((item, index) => (
-                    <ChoiceLabel key={index}>
-                        <ChoiceRadio 
-                            type="radio" 
-                            name="choices"
-                            checked={choice === item} 
-                            value={item} 
-                            onChange={changeChoices}
-                        />
-                        {item}
-                    </ChoiceLabel>
-                ))}
+                {
+                    openItem.choices.map((item, index) => (
+                        <ChoiceLabel key={index}>
+                            <ChoiceRadio 
+                                type="radio" 
+                                name="choices"
+                                checked={choice === item} 
+                                value={item} 
+                                onChange={changeChoices}
+                            />
+                            {item}
+                        </ChoiceLabel>
+                    ))
+                }
             </ChoiceWrap>
         </>
     )

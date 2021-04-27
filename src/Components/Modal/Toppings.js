@@ -23,6 +23,7 @@ export function Toppings({ toppings, checkToppings }) {
         <>
             <h3>Добавки</h3>
             <ToppingWrap>
+                {console.log(toppings)}
                 {toppings.map((item, index) => (
                     <ToppingLabel key={index}>
                         <ToppingCheckbox 

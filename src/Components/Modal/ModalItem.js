@@ -64,7 +64,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
     const toppings = useToppings(openItem);
     const choices = useChoices(openItem);
     const isEdit = openItem.index > -1;
-
+    
     const closeModal = (evt) => {
         if (evt.target.id === 'overlay') {
             setOpenItem(null);
@@ -101,7 +101,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                     </HeaderContent>
                     <CountItem {...counter}/>
                     {openItem.toppings && <Toppings {...toppings}/>}
-                    {openItem.choices && <Choices {...choices}/>}
+                    {openItem.choices && <Choices {...choices} openItem={openItem}/>}
                     <TotalPriceItem>
                         <span>Цена:</span>
                         <span>{formatCurrency(totalPriceItems(order))}</span>
