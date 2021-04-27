@@ -27,21 +27,21 @@ const rulesData = {
     choice: ['choice', (item) => item ? item : 'no choices'], 
 };
 
-const sendOrder = (database, orders, userName, userEmail) => {
-    const newOrder = orders.map(projection(rulesData));
+// const sendOrder = (database, orders, userName, userEmail) => {
+//     const newOrder = orders.map(projection(rulesData));
 
-    database.ref('orders').push().set({
-        nameClient: userName,
-        email: userEmail,
-        order: newOrder,
-    });
-};
+//     database.ref('orders').push().set({
+//         nameClient: userName,
+//         email: userEmail,
+//         order: newOrder,
+//     });
+// };
 
 export const OrderConfirm = ({ 
     orders, 
     setOrders, 
     setOpenOrderConfirm, 
-    database 
+    //database 
 }) => {
     const userName = useSelector(selectUserName);
     const userEmail = useSelector(selectUserEmail);
@@ -58,9 +58,9 @@ export const OrderConfirm = ({
                     <TotalPrice>{formatCurrency(total)}</TotalPrice>
                 </Total>
                 <ButtonCheckout onClick={() => {
-                    sendOrder(database, orders, userName, userEmail);
-                    setOrders([]);
+                    //sendOrder(database, orders, userName, userEmail);
                     
+                    setOrders([]);
                     setOpenOrderConfirm(false);
 
                     document.getElementById("message").style.display = "block";
