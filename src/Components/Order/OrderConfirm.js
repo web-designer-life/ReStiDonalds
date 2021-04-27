@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Overlay } from '../Modal/ModalItem';
 import { OrderTitle, Total, TotalPrice } from './Order';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { totalPriceItems, formatCurrency, projection } from '../Functions/secondaryFunction';
-import { Context } from '../Functions/context';
 
 const Modal = styled.div`
     background-color: white;
@@ -36,14 +35,7 @@ const sendOrder = (database, orders, authentication) => {
     });
 };
 
-export const OrderConfirm = () => {
-    const {
-        orders: { orders, setOrders },
-        auth: { authentication },
-        orderConfirm: { setOpenOrderConfirm },
-        database
-    } = useContext(Context);
-
+export const OrderConfirm = ({ orders, setOrders, authentication, setOpenOrderConfirm, database }) => {
     const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
 
     return (

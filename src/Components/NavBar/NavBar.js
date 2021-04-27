@@ -5,7 +5,7 @@ import loginImg from '../../Images/sign.svg';
 
 import { auth, provider } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout, selectUserName, selectUserEmail, selectUserAvatar } from '../../features/userSlice';
+import { login, logout, selectUserName, selectUserAvatar } from '../../features/userSlice';
 
 const NavBarStyled = styled.header`
     position: fixed;
@@ -85,7 +85,7 @@ export const NavBar = () => {
 
     const userName = useSelector(selectUserName);
     const userAvatar = useSelector(selectUserAvatar);
-
+    
     const handleLogin = () => {
         auth.signInWithPopup(provider)
             .then((result) => {
@@ -104,7 +104,7 @@ export const NavBar = () => {
             })
             .catch((err) => console.error())
     }
-    
+
     return (
         <NavBarStyled>
             <Logo>
@@ -118,13 +118,13 @@ export const NavBar = () => {
                             <ImgUser src={userAvatar} alt={userName}/>
                             <figcaption>{userName}</figcaption>
                         </Figure>
-                        <Logout title="Logout" onClick={logout}>X</Logout>
+                        <Logout title="Logout" onClick={handleLogout}>Logout</Logout>
                     </User>
                 ) : (
-                    <Login onClick={login}>
+                    <Login onClick={handleLogin}>
                         <Figure>
                             <ImgLogin src={loginImg} alt="Login Image"/>
-                            <figcaption>войти</figcaption>
+                            <figcaption>Login</figcaption>
                         </Figure>
                     </Login>
                 )

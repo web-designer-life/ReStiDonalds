@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
 import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
-import { Context } from '../Functions/context';
 
 const OrderStyled = styled.section`
     position: fixed;
@@ -64,13 +63,7 @@ const EmptyList = styled.p`
     text-align: center;
 `;
 
-export const Order = () => {
-    const {
-        auth: { authentication, logIn },
-        orders: { orders, setOrders },
-        orderConfirm: { setOpenOrderConfirm },
-    } = useContext(Context);
-
+export const Order = ({ authentication, login, orders, setOrders, setOpenOrderConfirm }) => {
     const deleteItem = (index) => {
         const newOrders = orders.filter((item, i) => index !== i);
 
@@ -107,7 +100,7 @@ export const Order = () => {
                         if (authentication) {
                             setOpenOrderConfirm(true);
                         } else {
-                            logIn();
+                            login();
                         }
                     }}>Оформить</ButtonCheckout>
                 </> : 

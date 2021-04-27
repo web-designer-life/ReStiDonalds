@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { ContextItem } from '../Functions/context';
 
 const ChoiceWrap = styled.div`
     max-width: 500px;
@@ -19,12 +18,7 @@ const ChoiceLabel = styled.label`
     display: block;
 `;
 
-export function Choices() {
-    const {
-        choices: { choice, changeChoices },
-        openItem,
-    } = useContext(ContextItem);
-
+export function Choices({ choice, changeChoices, openItem }) {
     return (
         <>
             <h3>Выбирайте:</h3>
