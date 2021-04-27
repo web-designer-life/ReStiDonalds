@@ -20,29 +20,28 @@ const SectionMenu = styled.section`
     padding: 15px;
 `;
 
-export const Menu = ({ setOpenItem }) => {
-    return (
-        <MenuStyled>
-            <Banner/>
-            {dbMenu ? 
-                <>
-                    <SectionMenu>
-                        <h2>Бургеры</h2>
-                        <ListItem 
-                            itemList={dbMenu.burger}
-                        />
-                    </SectionMenu>
+export const Menu = ({ setOpenItem }) => (
+    <MenuStyled>
+        <Banner/>
+        {dbMenu ? 
+            <>
+                <SectionMenu>
+                    <h2>Бургеры</h2>
+                    <ListItem 
+                        itemList={dbMenu.burger}
+                        setOpenItem={setOpenItem}
+                    />
+                </SectionMenu>
 
-                    <SectionMenu>
-                        <h2>Закуски / Напитки</h2>
-                        <ListItem 
-                            itemList={dbMenu.other}
-                            setOpenItem={setOpenItem}
-                        />
-                    </SectionMenu>
-                </> :
-                <Preloader />
-            }
-        </MenuStyled>  
-    )
-};
+                <SectionMenu>
+                    <h2>Закуски / Напитки</h2>
+                    <ListItem 
+                        itemList={dbMenu.other}
+                        setOpenItem={setOpenItem}
+                    />
+                </SectionMenu>
+            </> :
+            <Preloader />
+        }
+    </MenuStyled>
+);

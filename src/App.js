@@ -7,7 +7,6 @@ import { Order } from './Components/Order/Order';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useTitle } from './Components/Hooks/useTitle';
-import { useDB } from './Components/Hooks/useDB';
 import { OrderConfirm } from './Components/Order/OrderConfirm';
 import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
 import { OrderMessage } from './Components/Order/OrderMessage';
@@ -19,10 +18,11 @@ function App() {
   const orderConfirm = useOrderConfirm();
 
   useTitle(openItem.openItem);
-
+  
   return (
     <>
       <GlobalStyle />
+      <OrderMessage />
       <NavBar />
       <Order  
         {...orders}
@@ -44,7 +44,8 @@ function App() {
           {...orders} 
           //{...auth} 
           {...orderConfirm}
-        />}
+        />
+      }
     </>
   );
 }
