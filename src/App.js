@@ -10,9 +10,33 @@ import { useTitle } from './Components/Hooks/useTitle';
 import { OrderConfirm } from './Components/Order/OrderConfirm';
 import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
 import { OrderMessage } from './Components/Order/OrderMessage';
+import { auth, provider } from './firebase';
+import { useDispatch } from 'react-redux';
+import { login, logout } from './features/userSlice';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
+  
+  const handleLogin = () => {
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        dispatch(login({
+          userName: result.user.displayName,
+          userEmail: result.user.email,
+          userAvatar: result.user.photoURL
+        }))
+      })
+    }
+
+  const handleLogout = () => {
+    auth.signOut()
+      .then(() => {
+        dispatch(logout())
+      })
+      .catch((err) => console.error())
+  }
+
   const openItem = useOpenItem();
   const orders = useOrders();
   const orderConfirm = useOrderConfirm();
@@ -23,12 +47,15 @@ function App() {
     <>
       <GlobalStyle />
       <OrderMessage />
-      <NavBar />
+      <NavBar 
+        login={handleLogin}
+        logout={handleLogout}
+      />
       <Order  
         {...orders}
         {...openItem}
-        //{...auth}
         {...orderConfirm}
+        login={handleLogin}
       />
       <Menu {...openItem}/>
       {

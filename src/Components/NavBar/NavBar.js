@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import logoImg from '../../Images/logo.svg';
 import loginImg from '../../Images/sign.svg';
 
-import { auth, provider } from '../../firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, logout, selectUserName, selectUserAvatar } from '../../features/userSlice';
+import { useSelector } from 'react-redux';
+import { selectUserName, selectUserAvatar } from '../../features/userSlice';
 
 const NavBarStyled = styled.header`
     position: fixed;
@@ -80,30 +79,9 @@ const Figure = styled.figure`
     }
 `;
 
-export const NavBar = () => {
-    const dispatch = useDispatch();
-
+export const NavBar = ({ login, logout }) => {
     const userName = useSelector(selectUserName);
     const userAvatar = useSelector(selectUserAvatar);
-    
-    const handleLogin = () => {
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                dispatch(login({
-                    userName: result.user.displayName,
-                    userEmail: result.user.email,
-                    userAvatar: result.user.photoURL
-                }))
-            })
-    }
-
-    const handleLogout = () => {
-        auth.signOut()
-            .then(() => {
-                dispatch(logout())
-            })
-            .catch((err) => console.error())
-    }
 
     return (
         <NavBarStyled>
@@ -118,10 +96,10 @@ export const NavBar = () => {
                             <ImgUser src={userAvatar} alt={userName}/>
                             <figcaption>{userName}</figcaption>
                         </Figure>
-                        <Logout title="Logout" onClick={handleLogout}>Logout</Logout>
+                        <Logout title="Logout" onClick={() => logout()}>Logout</Logout>
                     </User>
                 ) : (
-                    <Login onClick={handleLogin}>
+                    <Login onClick={() => login()}>
                         <Figure>
                             <ImgLogin src={loginImg} alt="Login Image"/>
                             <figcaption>Login</figcaption>

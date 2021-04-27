@@ -4,6 +4,9 @@ import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
 import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
 
+import { useSelector } from 'react-redux';
+import { selectUserName } from '../../features/userSlice';
+
 const OrderStyled = styled.section`
     position: fixed;
     display: flex;
@@ -63,7 +66,9 @@ const EmptyList = styled.p`
     text-align: center;
 `;
 
-export const Order = ({ authentication, login, orders, setOrders, setOpenOrderConfirm }) => {
+export const Order = ({ orders, setOrders, setOpenOrderConfirm, setOpenItem, login }) => {
+    const userName = useSelector(selectUserName);
+    
     const deleteItem = (index) => {
         const newOrders = orders.filter((item, i) => index !== i);
 
@@ -80,16 +85,22 @@ export const Order = ({ authentication, login, orders, setOrders, setOpenOrderCo
             <OrderContent>
                 {orders.length ? 
                 <OrderList>
-                    {orders.map((order, index) => <OrderListItem 
-                        key={index}
-                        order={order}
-                        deleteItem={deleteItem}
-                        index={index}
-                    />)}
+                    {
+                        orders.map((order, index) => (
+                            <OrderListItem 
+                                key={index}
+                                order={order}
+                                deleteItem={deleteItem}
+                                index={index}
+                                setOpenItem={setOpenItem}
+                            />
+                        ))
+                    }
                 </OrderList> : 
                 <EmptyList>Список заказов пуст</EmptyList>}
             </OrderContent>
-            {orders.length ?
+            {
+                orders.length ?
                 <>
                     <Total>
                         <span>Итого</span>
@@ -97,7 +108,7 @@ export const Order = ({ authentication, login, orders, setOrders, setOpenOrderCo
                         <TotalPrice>{formatCurrency(total)}</TotalPrice>
                     </Total>
                     <ButtonCheckout onClick={() => {
-                        if (authentication) {
+                        if (userName) {
                             setOpenOrderConfirm(true);
                         } else {
                             login();
